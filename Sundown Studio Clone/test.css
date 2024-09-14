@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Neue;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+body{
+    padding:50px ;
+
+}
+#hero1{
+    height:30vw;
+    width: 30vw;
+    background-color: orangered;
+    filter: blur(15px);
+    border-radius: 50%;
+position: absolute;
+}
+#hero2{
+    height:30vw;
+    width: 30vw;
+    background-color: orangered;
+    filter: blur(15px);
+    border-radius: 50%;
+    position: absolute;
+}
+#hero3{
+    height:30vw;
+    width: 30vw;
+    background-color: orangered;
+    filter: blur(15px);
+    border-radius: 50%;
+position: absolute;
+}
