@@ -1,0 +1,158 @@
+body {
+  font-family: 'Joti One';
+  background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('https://png.pngtree.com/background/20250305/original/pngtree-checklist-pocket-planner-featuring-a-blank-to-do-list-on-a-picture-image_13469958.jpg') no-repeat center center/cover;
+  filter: blur(12px);
+  z-index: -1;
+  opacity: 0.6; /* adjust for brightness */
+}
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin-top: 30px;
+  gap: 30px;
+}
+
+.todo-input, .todo-view {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 1.5em;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  color: #f0f0f0;
+}
+
+
+
+.todo-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.task-columns > div {
+  flex: 1;
+}
+
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1em;
+}
+
+input {
+  flex: 1;
+  padding: 0.6em;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 0.6em 1.2em;
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #3700b3;
+}
+
+ul.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-list li {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  margin-bottom: 12px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.task-list li:hover {
+  box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #d6e0ff 0%, #a3bffa 100%);
+}
+
+.task-list li span {
+  flex: 1;
+  font-size: 1.1em;
+  color: #333;
+  user-select: none;
+}
+
+.task-list li span.done {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.task-list li .buttons button {
+  background: transparent;
+  border: none;
+  color: #555;
+  margin-left: 10px;
+  font-size: 1.3em;
+  transition: color 0.3s ease;
+}
+
+.task-list li .buttons button:hover {
+  color: #d32f2f;
+}
+
+#activeTasks li {
+  background: #e3f2fd;
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+}
+
+#activeTasks li:hover {
+  background: #bbdefb;
+}
+
+#completedTasks li {
+  background: #f1f8e9;
+  box-shadow: 0 4px 8px rgba(139, 195, 74, 0.3);
+}
+
+#completedTasks li:hover {
+  background: #dcedc8;
+}
+

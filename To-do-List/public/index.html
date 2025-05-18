@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8" />
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="overlay"></div>
+  <div class="main-container">
+    <div class="todo-input">
+      <h2 style="text-align: center;font-size: 2.5em;">Add New Task</h2>
+      <form id="taskForm">
+        <input type="text" id="taskInput" placeholder="Enter a new task" required />
+        <button type="submit">Add</button>
+      </form>
+      <h3>All Tasks</h3>
+      <ul id="allTasks" class="task-list"></ul>
+    </div>
+
+    <div class="todo-view">
+      <h2 style="text-align: center;font-size: 2.5em;">Tasks Overview</h2>
+      <div class="task-columns">
+        <div>
+          <h3>To Be Done</h3>
+          <ul id="activeTasks" class="task-list"></ul>
+        </div>
+        <div>
+          <h3>Completed</h3>
+          <ul id="completedTasks" class="task-list"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+let tasks = [];
+
+async function fetchTasks() {
+  const res = await fetch('/tasks');
+  tasks = await res.json();
+  renderTasks();
+}
+
+function renderTasks() {
+  const activeList = document.getElementById('activeTasks');
+  const completedList = document.getElementById('completedTasks');
+  const allList = document.getElementById('allTasks');
+  activeList.innerHTML = '';
+  completedList.innerHTML = '';
+  allList.innerHTML = '';
+
+  tasks.forEach(task => {
+    // === ALL TASKS SECTION ===
+    const allLi = document.createElement('li');
+    allLi.innerHTML = `<span>${task.text}</span>`;  // No strike-through, no class
+    allList.appendChild(allLi);
+
+    // === ACTIVE/COMPLETED WITH BUTTONS ===
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <span class="${task.done ? 'done' : ''}">${task.text}</span>
+      <div class="buttons">
+        <button onclick="toggleDone('${task.id}')">✔</button>
+        <button onclick="deleteTask('${task.id}')">✖</button>
+      </div>
+    `;
+
+    if (task.done) {
+      completedList.appendChild(li);
+    } else {
+      activeList.appendChild(li);
+    }
+  });
+}
+
+async function addTask(e) {
+  e.preventDefault();
+  const input = document.getElementById('taskInput');
+  if (!input.value.trim()) return;
+  await fetch('/tasks', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text: input.value })
+  });
+  input.value = '';
+  fetchTasks();
+}
+
+async function deleteTask(id) {
+  await fetch(`/tasks/${id}`, { method: 'DELETE' });
+  fetchTasks();
+}
+
+async function toggleDone(id) {
+  await fetch(`/tasks/${id}`, { method: 'PUT' });
+  fetchTasks();
+}
+
+document.getElementById('taskForm').addEventListener('submit', addTask);
+fetchTasks();
+</script>
+
+</body>
+</html>
