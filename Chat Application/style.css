@@ -1,8 +1,8 @@
 .logo{
 display: block;
 margin: auto;
-height: 100px;
-width: 100px;
+height: 150px;
+width: 150px;
 }
 body{
     height: 100vh;
@@ -11,18 +11,38 @@ body{
 .container{
     background-color: #02162F;
    max-width: 955px; 
-margin: auto;
-height: 60vh;
-}
-.message{
-background-color: grey;
-width: 24%;
-padding: 10px;
-margin: 17px 12px;
-border: 2px solid black;
+   margin: auto;
+   height: 60vh;
+  border: 2px solid black; 
 border-radius: 20px;
+padding: 25px;
+overflow-y: auto;  /* When messasges will be more scroll bar will appear */
+margin-bottom: 23px;
+
 
 }
+.message{
+  width: fit-content;
+  margin: 10px auto;
+  background-color: #444; 
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: white;
+}
+
+.message.center {
+  display: block;
+  text-align: center;
+  width: fit-content;
+  margin: 10px auto;
+  background-color: #444; 
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: white;
+  font-style: italic;
+}
+
+
 .right{
 float: right;
 clear: both;
@@ -43,6 +63,7 @@ clear: both;
     border: 2px solid black;
     border-radius: 2px;
     height: 34px;
+    font-size: 20px;
 }
 .btn{
     cursor: pointer;
